@@ -34,7 +34,7 @@ class LabeledData(torch.utils.data.Dataset):
     return (img,label)
 
 
-class VerificationModel(pl.LightningModule):
+class FullySupervisedModel(pl.LightningModule):
 
     def __init__(self, lr, weight_decay, num_classes, max_epochs=500):
         super().__init__()
