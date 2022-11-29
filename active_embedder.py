@@ -16,6 +16,9 @@ from torch.utils.data import Dataset, DataLoader
 from tqdm import tqdm
 from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
 
+#Code above embedder class adapted from https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/tutorial17/SimCLR.html
+# By Phillip Lippe
+
 class ImageDataset(Dataset):
   def __init__(self,image_list,transform=None):
     self.image_list = image_list
