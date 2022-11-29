@@ -17,7 +17,7 @@ import pandas as pd
 
 from torchvision import transforms
 
-class ManifestData(torch.utils.data.Dataset):
+class LabeledData(torch.utils.data.Dataset):
   def __init__(self,manifest,label_map,transform):
     self.manifest_df = pd.read_csv(manifest)
     self.transform=transform
