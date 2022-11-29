@@ -36,6 +36,7 @@ pl.seed_everything(42)
 import numpy as np
 
 # SimCLR code before Embedder class is adapted from https://github.com/phlippe/uvadlc_notebooks/blob/master/docs/tutorial_notebooks/tutorial17/SimCLR.ipynb
+# By Phillip Lippe
 
 class ContrastiveTransformations(object):
 
