@@ -18,7 +18,6 @@ from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
 class ImageDataset(Dataset):
   def __init__(self,image_list,size,transform):
     self.image_list = image_list
-    self.size = size
     self.transform=transform
 
   def __len__(self):
