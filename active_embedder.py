@@ -13,6 +13,7 @@ from urllib.error import HTTPError
 from torchvision import transforms
 from inspect import getmembers, isfunction
 from torch.utils.data import Dataset, DataLoader
+from tqdm import tqdm
 from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
 
 class ImageDataset(Dataset):
@@ -46,7 +47,7 @@ class ContrastiveTransformations(object):
 
 def data_splitter(image_list,image_size,transform):
 
-  clr_data = ActiveData(image_list,image_size,transform=ContrastiveTransformations(transform, n_views=2))
+  clr_data = ImageDataset(image_list,transform=transform)
   clr_loader = DataLoader(clr_data, batch_size=1, shuffle=False)
   train_samples = int(np.floor(len(clr_loader)*.9))
   val_samples = int(len(clr_loader)-train_samples)
@@ -140,7 +141,7 @@ def train_simclr(train_loader,val_loader,max_epochs=500, accelerator=None,**kwar
         print(f'Found pretrained model at {pretrained_filename}, loading...')
         model = SimCLR.load_from_checkpoint(pretrained_filename) # Automatically loads the model with the saved hyperparameters
         if accelerator!=None:
-          trainer.fit(model, accelerator=accelerator,train_loader, val_loader)
+          trainer.fit(model, accelerator=accelerator,train_loader=None, val_loader=None)
         else: 
           trainer.fit(model, train_loader, val_loader)
         model = SimCLR.load_from_checkpoint(trainer.checkpoint_callback.best_model_path) # Load best checkpoint after training
@@ -179,7 +180,7 @@ class Embedder():
       self.model = model
       self.pipeline = self.transform
     if embedding_option==3:
-      dict_loader,dict_data,dict_indices=data_splitter(self.image_list,self.image_size,self.transform)
+      dict_loader,dict_data,dict_indices=data_splitter(self.image_list,self.image_size,ContrastiveTransformations(self.transform, n_views=2))
       simclr_model = train_simclr(dict_loader["train"],dict_loader["val"],
                             hidden_dim=128,
                             lr=5e-4,
@@ -198,12 +199,11 @@ class Embedder():
       self.pipeline = self.transform
  
   def get_embeddings(self,transform):
-    self.active_data = ActiveData(self.image_list,self.image_size,transform)
+    self.active_data = ImageDataset(self.image_list,transform)
     self.active_loader = DataLoader(self.active_data, batch_size=1, shuffle=False)
     feature_tens = None
-    for i, image in enumerate(self.active_loader):
+    for i, image in tqdm(enumerate(self.active_loader)):
       features = self.model(image)
-      print(i)
       if feature_tens==None:
         feature_tens=features
       else:
