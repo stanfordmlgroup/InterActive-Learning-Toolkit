@@ -69,7 +69,6 @@ class DataLabeler:
       IPython.display.clear_output(wait=False)
       self.display_pictures_button(groups,counter+1,pd.concat([df,df2],ignore_index=True))
     
-    #print(drops_reference[2].value)
 
     cluster_box = Button(description="Ready? Next cluster")
 
