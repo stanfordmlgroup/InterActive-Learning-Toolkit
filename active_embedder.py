@@ -1,19 +1,19 @@
 import os
 import torch
 import torchvision
-import pytorch_lightning as pl
 import urllib.request
-from urllib.error import HTTPError
+import torch.nn as nn
+import torch.optim as optim
+import torch.utils.data as data
+import torch.nn.functional as F
+import pytorch_lightning as pl
 from PIL import Image
+from tqdm import tqdm
+from urllib.error import HTTPError
+from torchvision import transforms
+from inspect import getmembers, isfunction
 from torch.utils.data import Dataset, DataLoader
 from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.utils.data as data
-import torch.optim as optim
-
-from torchvision import transforms
 
 class ActiveData(torch.utils.data.Dataset):
   def __init__(self,image_list,size,transform):
