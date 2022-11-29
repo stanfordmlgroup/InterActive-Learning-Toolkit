@@ -16,7 +16,7 @@ from torch.utils.data import Dataset, DataLoader
 from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
 
 class ImageDataset(Dataset):
-  def __init__(self,image_list,size,transform):
+  def __init__(self,image_list,transform=None):
     self.image_list = image_list
     self.transform=transform
 
