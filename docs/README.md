@@ -1,4 +1,4 @@
-## Our InterActive Learning Toolkit
+## InterActive Learning Toolkit
 
 Active Learning algorithms such as [ProbCover](https://paperswithcode.com/paper/active-learning-through-a-covering-lens) have achieved state of the art results, and even made improvements over Self-Supervised and Semi-Supervised techniques. However, most of these results are in simualted environments: the datasets were actually labelled, but the labels were hidden from the model until the Active Learning "oracle" unhid them. We wanted to make Active Learning work for you -- dear Reader with a truly unlabelled dataset, by providing a full-service workflow. You start with an image folder of unlabelled data, and use this Toolkit to generate embeddings, select the examples to label, and save the labels.
 
@@ -23,3 +23,13 @@ Use your embeddings to select examples to label. Instantiate a class of our Acti
 
 ### Part 4: Test a model
 Use those labels to build a DataLoader. You're now ready to train a classifier that should have maximum performance per labelled example!
+
+### Citations
+
+Philip Lippe, https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/tutorial17/SimCLR.html
+
+Yehuda, Ofer, et al. "Active Learning Through a Covering Lens." arXiv preprint arXiv:2205.11320 (2022).
+
+Akshay L Chandra and Vineeth N Balasubramanian, Deep Active Learning Toolkit for Image Classification in PyTorch. https://github.com/acl21/deep-active-learning-pytorch
+
+Munjal, Prateek, et al. "Towards robust and reproducible active learning using neural networks." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022.
