@@ -21,12 +21,10 @@ class ProbCover():
     self.num_classes = num_classes
     if embeddings_loc == None:
       print("You need to use the Embedder class to create embeddings")
-    if embeddings_loc[-3:]=="npy":
+    if embeddings_loc.endswith("npy"):
       embeddings = np.load(os.path.join(save_dir, to_load))
       self.embeddings = torch.tensor(embeddings)
-    elif embeddings_loc[-2:]=="pt":
-      self.embeddings = torch.load(embeddings_loc)
-    elif embeddings_loc[-3:]=="pth":
+    elif embeddings_loc.endswith("pt") or embeddings_loc.endswith("pth"):
       self.embeddings = torch.load(embeddings_loc)
     else:
       print("Embeddings are neither numpy nor pytorch files")
