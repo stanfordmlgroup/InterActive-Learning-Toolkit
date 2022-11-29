@@ -33,3 +33,5 @@ Yehuda, Ofer, et al. "Active Learning Through a Covering Lens." arXiv preprint a
 Akshay L Chandra and Vineeth N Balasubramanian, Deep Active Learning Toolkit for Image Classification in PyTorch. https://github.com/acl21/deep-active-learning-pytorch
 
 Munjal, Prateek, et al. "Towards robust and reproducible active learning using neural networks." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022.
+
+Note: This website is an initial Work In Progress preview of our research and subject to change as the work progresses
